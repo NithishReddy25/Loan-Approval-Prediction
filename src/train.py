@@ -19,10 +19,10 @@ from catboost import CatBoostClassifier
 
 from sklearn.metrics import accuracy_score
 
-# Load Dataset
+
 df = pd.read_csv("../data/processed/loan_data_clean.csv")
 
-# Encode Categorical Features
+
 label_encoder = LabelEncoder()
 
 categorical_columns = [

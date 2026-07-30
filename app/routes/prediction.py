@@ -24,9 +24,7 @@ NUMERIC_FEATURES = {
     "Credit_History",
 }
 
-# These are the categorical values present in data/raw/train.csv, the dataset
-# used to fit final_pipeline.pkl.  Rejecting other values avoids silently
-# passing unknown categories to OneHotEncoder(handle_unknown="ignore").
+
 CATEGORICAL_CHOICES = {
     "Gender": {"Male", "Female"},
     "Married": {"Yes", "No"},
@@ -80,9 +78,7 @@ def home():
     return render_template("index.html")
 
 
-# -------------------------------------------------
-# Prediction
-# -------------------------------------------------
+
 
 @prediction_bp.route("/predict", methods=["POST"])
 def predict():

@@ -9,9 +9,7 @@ from app.routes.prediction import build_input_dataframe, model
 api_bp = Blueprint("api", __name__, url_prefix="/api")
 
 
-# --------------------------------------------------
-# Health Check
-# --------------------------------------------------
+
 
 @api_bp.route("/health", methods=["GET"])
 def health():
@@ -25,9 +23,7 @@ def health():
     ), 200
 
 
-# --------------------------------------------------
-# Prediction API
-# --------------------------------------------------
+
 
 @api_bp.route("/predict", methods=["POST"])
 def predict():

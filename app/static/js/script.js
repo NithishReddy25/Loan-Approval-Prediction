@@ -1,7 +1,4 @@
-// ==========================================================
-// AI Loan Decision Support System
-// Main JavaScript
-// ==========================================================
+
 
 document.addEventListener("DOMContentLoaded", () => {
 

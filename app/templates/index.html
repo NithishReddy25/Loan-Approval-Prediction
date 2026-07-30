@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+{% block title %}Loan Predictor{% endblock %}
+
+{% block content %}
+
+<!-- ================= FORM ================= -->
+
+<div class="card shadow-lg border-0">
+
+    <div class="card-header">
+
+        <h3>
+
+            <i class="bi bi-pencil-square me-2"></i>
+
+            Loan Application Details
+
+        </h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <form method="POST"
+              action="{{ url_for('prediction.predict') }}">
+
+            <div class="row">
+
+                <!-- Personal Information -->
+
+                <div class="col-12">
+
+                    <h5 class="mb-3 text-primary">
+
+                        Personal Information
+
+                    </h5>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label>Gender</label>
+
+                    <select class="form-select" name="Gender" required>
+
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label>Married</label>
+
+                    <select class="form-select"
+                            name="Married"
+                            required>
+
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label>Dependents</label>
+
+                    <select class="form-select"
+                            name="Dependents"
+                            required>
+
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3+">3+</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Education</label>
+
+                    <select class="form-select"
+                            name="Education">
+
+                        <option value="Graduate">
+                            Graduate
+                        </option>
+
+                        <option value="Not Graduate">
+                            Not Graduate
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Self Employed</label>
+
+                    <select class="form-select"
+                            name="Self_Employed">
+
+                        <option value="No">
+                            No
+                        </option>
+
+                        <option value="Yes">
+                            Yes
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Financial Information -->
+
+                <div class="col-12 mt-3">
+
+                    <h5 class="mb-3 text-primary">
+
+                        Financial Details
+
+                    </h5>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Applicant Income</label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="ApplicantIncome"
+                        placeholder="5000"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Coapplicant Income</label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="CoapplicantIncome"
+                        placeholder="2500"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Loan Amount</label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="LoanAmount"
+                        placeholder="120"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Loan Amount Term (Months)</label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="Loan_Amount_Term"
+                        value="360"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Credit History</label>
+
+                    <select class="form-select"
+                            name="Credit_History">
+
+                        <option value="1">
+
+                            Good
+
+                        </option>
+
+                        <option value="0">
+
+                            Bad
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Property Area</label>
+
+                    <select class="form-select"
+                            name="Property_Area">
+
+                        <option value="Urban">
+                            Urban
+                        </option>
+
+                        <option value="Semiurban">
+                            Semi Urban
+                        </option>
+
+                        <option value="Rural">
+                            Rural
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <div class="text-center">
+
+                <button
+                    class="btn btn-primary btn-lg px-5">
+
+                    <i class="bi bi-stars me-2"></i>
+
+                    Predict Loan Approval
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

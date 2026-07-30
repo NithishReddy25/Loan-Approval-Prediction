@@ -1,0 +1,364 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction Result{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-10">
+
+        <!-- RESULT CARD -->
+
+        <div class="card shadow-lg border-0 mb-4">
+
+            <div class="card-body text-center py-5">
+
+                {% if prediction == "Approved" %}
+
+                <div class="result-approved">
+
+                    <i class="bi bi-check-circle-fill display-1 mb-3"></i>
+
+                    <h2>Loan Approved</h2>
+
+                    <p>
+
+                        Congratulations! The AI model predicts that this
+                        loan application is likely to be approved.
+
+                    </p>
+
+                </div>
+
+                {% else %}
+
+                <div class="result-rejected">
+
+                    <i class="bi bi-x-circle-fill display-1 mb-3"></i>
+
+                    <h2>Loan Rejected</h2>
+
+                    <p>
+
+                        The AI model predicts that this application
+                        may not satisfy the approval criteria.
+
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% if applicant is defined and applicant %}
+
+        <div class="card shadow border-0 mb-4">
+
+            <div class="card-header">
+
+                <h4>
+
+                    <i class="bi bi-person-vcard me-2"></i>
+
+                    Application Details
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    {% for label, value in applicant.items() %}
+
+                    <div class="col-md-4 mb-3">
+
+                        <small class="text-muted d-block">{{ label.replace('_', ' ') }}</small>
+
+                        <strong>{{ value if value is not none else 'Not available' }}</strong>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        <!-- CONFIDENCE -->
+
+        <div class="card shadow border-0 mb-4">
+
+            <div class="card-header">
+
+                <h4>
+
+                    <i class="bi bi-graph-up-arrow me-2"></i>
+
+                    Prediction Confidence
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+
+                    <strong>Confidence Score</strong>
+
+                    <strong>{{ confidence }}%</strong>
+
+                </div>
+
+                <div class="progress mt-3">
+
+                    <div
+                        class="progress-bar bg-success"
+                        role="progressbar"
+                        style="width: {{ confidence }}%;">
+
+                        {{ confidence }}%
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SUMMARY -->
+
+        <div class="row">
+
+            <div class="col-lg-6 mb-4">
+
+                <div class="card h-100 shadow border-0">
+
+                    <div class="card-header">
+
+                        <h5>
+
+                            <i class="bi bi-card-checklist me-2"></i>
+
+                            Prediction Summary
+
+                        </h5>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <table class="table table-borderless">
+
+                            <tr>
+
+                                <th>Prediction</th>
+
+                                <td>{{ prediction }}</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <th>Confidence</th>
+
+                                <td>{{ confidence }}%</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <th>Status</th>
+
+                                <td>
+
+                                    {% if prediction=="Approved" %}
+
+                                    <span class="badge badge-approved">
+
+                                        Approved
+
+                                    </span>
+
+                                    {% else %}
+
+                                    <span class="badge badge-rejected">
+
+                                        Rejected
+
+                                    </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SHAP -->
+
+        <div class="card shadow border-0 mb-4">
+
+            <div class="card-header">
+
+                <h4>
+
+                    <i class="bi bi-cpu me-2"></i>
+
+                    Explainable AI (Feature Importance)
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                {% if shap_table is defined and shap_table is not none %}
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Feature</th>
+
+                                <th>Contribution</th>
+
+                                <th>Impact</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for row in shap_table.itertuples() %}
+
+                            <tr>
+
+                                <td>
+
+                                    {{ row.Feature }}
+
+                                </td>
+
+                                <td>
+
+                                    <span class="{{ 'text-success' if row.SHAP_Value >= 0 else 'text-danger' }} fw-bold">
+
+                                        {{ "%+.4f"|format(row.SHAP_Value) }}
+
+                                    </span>
+
+                                </td>
+
+                                <td class="w-50">
+
+                                    <div class="progress" style="height: 12px;">
+
+                                        <div
+                                            class="progress-bar {{ 'bg-success' if row.SHAP_Value >= 0 else 'bg-danger' }}"
+                                            role="progressbar"
+                                            style="width: {{ row.Bar_Width }}%"
+                                            aria-valuenow="{{ row.Bar_Width }}"
+                                            aria-valuemin="0"
+                                            aria-valuemax="100">
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                {% else %}
+
+                <div class="alert alert-warning mb-0">
+
+                    {{ shap_error or "Feature explanation is unavailable for this prediction." }}
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <!-- BUTTONS -->
+
+        <div class="text-center">
+
+            {% if prediction_id is defined %}
+
+            <a
+                href="{{ url_for('history.download_prediction', prediction_id=prediction_id) }}"
+                class="btn btn-outline-secondary btn-lg me-2">
+
+                <i class="bi bi-download me-2"></i>
+
+                Download Result
+
+            </a>
+
+            {% endif %}
+
+            <a
+                href="{{ url_for('prediction.home') }}"
+                class="btn btn-primary btn-lg me-2">
+
+                <i class="bi bi-arrow-repeat me-2"></i>
+
+                New Prediction
+
+            </a>
+
+            <a
+                href="{{ url_for('dashboard.dashboard') }}"
+                class="btn btn-success btn-lg">
+
+                <i class="bi bi-speedometer2 me-2"></i>
+
+                Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

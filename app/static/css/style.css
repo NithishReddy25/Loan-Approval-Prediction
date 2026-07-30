@@ -1,0 +1,752 @@
+/* ==========================================================
+   AI Loan Decision Support System
+   Premium UI - Part 1
+========================================================== */
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================================
+   Reset
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+    linear-gradient(135deg,#eef4ff 0%,#f8fbff 45%,#eef7ff 100%);
+
+    color:#222;
+
+    min-height:100vh;
+
+}
+
+/* ==========================================================
+   Scrollbar
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#eef3ff;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#6a8dff;
+
+    border-radius:30px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#3f6cff;
+
+}
+
+/* ==========================================================
+   Navbar
+========================================================== */
+
+.navbar{
+
+    background:rgba(17,24,39,.88)!important;
+
+    backdrop-filter:blur(16px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 8px 25px rgba(0,0,0,.18);
+
+}
+
+.navbar .container{
+
+    padding-top:8px;
+
+    padding-bottom:8px;
+
+}
+
+.navbar-brand{
+
+    color:#fff!important;
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+.nav-link{
+
+    color:#e8ecff!important;
+
+    margin-left:8px;
+
+    padding-top:4px;
+
+    padding-bottom:4px;
+
+    transition:.3s;
+
+    font-weight:500;
+
+}
+
+.nav-link:hover{
+
+    color:#6ea8ff!important;
+
+}
+
+/* ==========================================================
+   Main Container
+========================================================== */
+
+.container{
+
+    padding-top:30px;
+
+    padding-bottom:30px;
+
+}
+
+/* ==========================================================
+   Glass Cards
+========================================================== */
+
+.card{
+
+    background:rgba(255,255,255,.78);
+
+    backdrop-filter:blur(18px);
+
+    border:none;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+    box-shadow:
+
+    0 12px 40px rgba(30,41,59,.10);
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+
+    0 20px 45px rgba(37,99,235,.18);
+
+}
+
+/* ==========================================================
+   Card Header
+========================================================== */
+
+.card-header{
+
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5);
+
+    color:#fff;
+
+    border:none;
+
+    padding:22px;
+
+}
+
+.card-header h2,
+.card-header h3,
+.card-header h4{
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   Card Body
+========================================================== */
+
+.card-body{
+
+    padding:35px;
+
+}
+
+/* ==========================================================
+   Buttons
+========================================================== */
+
+.btn{
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    padding:12px 22px;
+
+}
+
+.btn-primary{
+
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5);
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+    0 15px 30px rgba(37,99,235,.35);
+
+}
+
+.btn-success{
+
+    background:linear-gradient(
+    135deg,
+    #10b981,
+    #14b8a6);
+
+    border:none;
+
+}
+
+.btn-success:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.btn-danger{
+
+    border:none;
+
+}
+
+/* ==========================================================
+   Inputs
+========================================================== */
+
+.form-control,
+.form-select{
+
+    border-radius:12px;
+
+    border:1px solid #d6def5;
+
+    padding:13px;
+
+    transition:.3s;
+
+    box-shadow:none;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#4f46e5;
+
+    box-shadow:
+
+    0 0 0 .20rem rgba(79,70,229,.18);
+
+}
+
+label{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+/* ==========================================================
+   Titles
+========================================================== */
+
+h1,h2,h3,h4,h5{
+
+    font-weight:700;
+
+}
+
+.text-muted{
+
+    color:#6b7280!important;
+
+}
+
+/* ==========================================================
+   Dashboard Statistics Cards
+========================================================== */
+
+.stats-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    padding:28px;
+
+    color:#fff;
+
+    transition:.35s;
+
+    min-height:170px;
+
+}
+
+.stats-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    right:-60px;
+    top:-60px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.12);
+
+}
+
+.stats-card:hover{
+
+    transform:translateY(-8px) scale(1.02);
+
+}
+
+.stats-card h5{
+
+    font-size:1rem;
+
+    opacity:.95;
+
+}
+
+.stats-card h2{
+
+    font-size:2.3rem;
+
+    margin-top:15px;
+
+    font-weight:700;
+
+}
+
+.bg-blue{
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+}
+
+.bg-green{
+
+    background:linear-gradient(135deg,#10b981,#14b8a6);
+
+}
+
+.bg-red{
+
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+
+}
+
+.bg-purple{
+
+    background:linear-gradient(135deg,#7c3aed,#9333ea);
+
+}
+
+/* ==========================================================
+   Prediction Result Cards
+========================================================== */
+
+.result-approved{
+
+    background:linear-gradient(135deg,#10b981,#22c55e);
+
+    color:white;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:center;
+
+}
+
+.result-rejected{
+
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+
+    color:white;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:center;
+
+}
+
+.result-approved h2,
+.result-rejected h2{
+
+    font-size:2.4rem;
+
+    margin-bottom:15px;
+
+}
+
+.result-approved p,
+.result-rejected p{
+
+    font-size:1.15rem;
+
+}
+
+/* ==========================================================
+   Prediction Confidence
+========================================================== */
+
+.progress{
+
+    height:16px;
+
+    border-radius:20px;
+
+    background:#dbe7ff;
+
+    overflow:hidden;
+
+}
+
+.progress-bar{
+
+    border-radius:20px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================================
+   Tables
+========================================================== */
+
+.table{
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    background:white;
+
+}
+
+.table thead{
+
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5);
+
+    color:white;
+
+}
+
+.table thead th{
+
+    border:none;
+
+    padding:18px;
+
+}
+
+.table tbody td{
+
+    vertical-align:middle;
+
+    padding:16px;
+
+}
+
+.table tbody tr{
+
+    transition:.25s;
+
+}
+
+.table tbody tr:hover{
+
+    background:#eef5ff;
+
+}
+
+/* ==========================================================
+   Badges
+========================================================== */
+
+.badge{
+
+    font-size:.82rem;
+
+    padding:9px 14px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+
+.badge-approved{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+}
+
+.badge-rejected{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+
+}
+
+/* ==========================================================
+   Alert Boxes
+========================================================== */
+
+.alert{
+
+    border:none;
+
+    border-radius:14px;
+
+    font-weight:500;
+
+}
+
+.alert-success{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+}
+
+.alert-danger{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+
+}
+
+.alert-warning{
+
+    background:#fef3c7;
+
+    color:#92400e;
+
+}
+
+/* ==========================================================
+   Footer
+========================================================== */
+
+footer{
+
+    margin-top:50px;
+
+    padding:30px;
+
+    text-align:center;
+
+    color:#6b7280;
+
+    font-size:.95rem;
+
+}
+
+/* ==========================================================
+   Fade Animation
+========================================================== */
+
+.fade-up{
+
+    animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================================
+   Floating Animation
+========================================================== */
+
+.float{
+
+    animation:floating 4s ease-in-out infinite;
+
+}
+
+@keyframes floating{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media(max-width:992px){
+
+.card-body{
+
+padding:25px;
+
+}
+
+.stats-card{
+
+margin-bottom:20px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.container{
+
+padding:15px;
+
+}
+
+.card{
+
+border-radius:16px;
+
+}
+
+.card-body{
+
+padding:20px;
+
+}
+
+.btn{
+
+width:100%;
+
+margin-top:10px;
+
+}
+
+.table{
+
+font-size:.9rem;
+
+}
+
+.stats-card h2{
+
+font-size:1.8rem;
+
+}
+
+}
+
+.history-record{
+
+    cursor:pointer;
+
+}

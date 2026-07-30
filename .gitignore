@@ -18,5 +18,6 @@ venv/
 
 Thumbs.db
 
+# Logs
 logs/
-*.application.log
+*.log

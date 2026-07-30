@@ -142,7 +142,7 @@ The application not only predicts whether a loan should be approved but also exp
 
 ---
 
-# 🧠 Machine Learning Workflow
+#  Machine Learning Workflow
 
 ```
 Dataset
@@ -171,7 +171,7 @@ SHAP Explainability
 
 ---
 
-# 📂 Project Structure
+#  Project Structure
 
 ```
 Loan-Approval-Prediction/
